@@ -1,0 +1,107 @@
+{
+  "name": "vala-language-client",
+  "displayName": "Vala Language Client",
+  "description": "Vala Language Client for Visual Studio Code",
+  "version": "1.0.0",
+  "publisher": "philippejer",
+  "author": {
+    "name": "Jeremy Philippe",
+    "email": "jeremy.philippe@gmail.com"
+  },
+  "license": "LGPL",
+  "engines": {
+    "vscode": "^1.33.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/philippejer/vala-language-client-alpha.git"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "icon": "images/vala.png",
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:vala"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "vala",
+        "aliases": [
+          "Vala",
+          "vala"
+        ],
+        "extensions": [
+          ".vala",
+          ".vapi"
+        ]
+      },
+      {
+        "id": "genie",
+        "aliases": [
+          "Genie",
+          "genie"
+        ],
+        "extensions": [
+          ".gs"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "vls.restart.server",
+        "title": "VLS: Restart Server",
+        "description": "Restarts the language server."
+      }
+    ],
+    "configuration": [
+      {
+        "title": "Vala Language Server",
+        "properties": {
+          "vls.path.server": {
+            "type": "string",
+            "default": "vala-language-server",
+            "description": "Name or full path to the language server executable.",
+            "scope": "window"
+          },
+          "vls.debug.server": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enables debug messages from the language server.",
+            "scope": "window"
+          },
+          "vls.trace.server": {
+            "type": "string",
+            "enum": [
+              "off",
+              "messages",
+              "verbose"
+            ],
+            "default": "off",
+            "description": "Traces the communication between VS Code and the language server.",
+            "scope": "window"
+          }
+        }
+      }
+    ]
+  },
+  "dependencies": {
+    "vscode-languageclient": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.0",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.1",
+    "vscode": "^1.1.35",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6"
+  },
+  "scripts": {
+    "vscode:prepublish": "webpack --mode production",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "update-vscode": "node ./node_modules/vscode/bin/install",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  }
+}

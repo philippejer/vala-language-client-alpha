@@ -6,7 +6,7 @@ Note that the syntax highlighting in the example below is provided by this exten
 
 ## Supported language server features
 
-<img src="https://github.com/philippejer/vala-language-server-alpha/blob/master/demo.gif" alt="demo" width="100%"/>
+![Demo](https://github.com/philippejer/vala-language-client-alpha/raw/master/images/demo.gif?raw=true)
 
 The following features work reasonably well:
 

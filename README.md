@@ -26,7 +26,7 @@ There are a few useful configuration settings:
 
 * `vls.path.server` -> path to the `vala-language-server` executable (not required if in the `PATH`)
 * `vls.trace.server ("off"|"messages"|"verbose")` -> debug traces for the client/server communication
-* `vls.debug.server (true|false)` -> debug traces for the server itself
+* `vls.debug.server ("off"|"warn"|"info"|"debug")` -> debug level for the server itself
 * `editor.wordBasedSuggestions (true|false)` -> set to false to avoid having text-based completion when the server cannot provide completion (confusing)
 * `editor.quickSuggestionsDelay (milliseconds)` -> can be set to some high value to effectively disable the automatic completion popup for global symbols (completion can then be invoked on demand via the CTRL+SPACE shortcut, can be useful if completion popups are annoying)
 * `editor.suggestOnTriggerCharacters (true|false)` -> set to false to disable the automatic completion popup when the 'dot' character is typed (completion can then be invoked on demand via the CTRL+SPACE shortcut, can be useful if completion popups are annoying)
@@ -35,7 +35,7 @@ There are a few useful configuration settings:
 Typical configuration:
 
 ```json
-"vls.debug.server": false,
+"vls.debug.server": "warn",
 "vls.trace.server": "off",
 "editor.wordBasedSuggestions": false,
 "editor.quickSuggestionsDelay": 500,

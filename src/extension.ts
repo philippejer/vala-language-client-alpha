@@ -21,10 +21,10 @@ class ValaLanguageClient implements Disposable {
     constructor(context: ExtensionContext) {
         let config = workspace.getConfiguration('vls');
         let serverPath: string = config['path']['server'] || 'vala-language-server';
-        let serverDebug: boolean = config['debug']['server'];
+        let serverDebug: string = config['debug']['server'];
 
         const outputChannel = window.createOutputChannel('Vala Language Server');
-        if (serverDebug) {
+        if (serverDebug === 'debug' || serverDebug === 'info') {
             outputChannel.show();
         }
 
@@ -44,11 +44,15 @@ class ValaLanguageClient implements Disposable {
             transport: TransportKind.stdio
         };
 
-        if (serverDebug) {
-            serverOptions.options.env['VLS_DEBUG'] = 'true';
+        serverOptions.options.env['VLS_DEBUG'] = serverDebug;
+        if (serverDebug === 'debug' || serverDebug === 'info') {
             serverOptions.options.env['G_MESSAGES_DEBUG'] = 'all';
-            // serverOptions.options.env['JSONRPC_DEBUG'] = 'true';
         }
+        
+        // Enables the output the debug logs from the JSON-RPC library (for reference, redundant with the message output from the extension).
+        // if (serverDebug === 'debug') {
+        //     serverOptions.options.env['JSONRPC_DEBUG'] = 'true';
+        // }
 
         this.client = new LanguageClient('vls', 'Vala Language Server', serverOptions, clientOptions);
         this.start();

@@ -2,7 +2,7 @@
   "name": "vala-language-client",
   "displayName": "Vala Language Client",
   "description": "Vala Language Client for Visual Studio Code",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publisher": "philippejer",
   "author": {
     "name": "Jeremy Philippe",
@@ -66,9 +66,15 @@
             "scope": "window"
           },
           "vls.debug.server": {
-            "type": "boolean",
-            "default": false,
-            "description": "Enables debug messages from the language server.",
+            "type": "string",
+            "enum": [
+              "off",
+              "warn",
+              "info",
+              "debug"
+            ],
+            "default": "warn",
+            "description": "Debug level for the language server.",
             "scope": "window"
           },
           "vls.trace.server": {

@@ -2,7 +2,7 @@
  
 /* suggest-widget size */
 .monaco-editor .suggest-widget.docs-side {
-  width: 1600px;
+  width: 800px;
 }
 .monaco-editor .suggest-widget.docs-side > .details {
   width: 70%;
@@ -18,10 +18,10 @@
   max-height: 800px !important;
 }
 .monaco-editor .parameter-hints-widget > .wrapper {
-  max-width: 1600px;
+  max-width: 800px;
 }
 
 /* editor-hover */
 .monaco-editor-hover .monaco-editor-hover-content {
-  max-width: 1600px;
+  max-width: 800px;
 }

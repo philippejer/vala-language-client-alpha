@@ -22,6 +22,7 @@ class ValaLanguageClient implements Disposable {
         let config = workspace.getConfiguration('vls');
         let serverPath: string = config['path']['server'] || 'vala-language-server';
         let serverDebug: string = config['debug']['server'];
+        let methodCompletionMode: string = config['methodCompletionMode'];
 
         const outputChannel = window.createOutputChannel('Vala Language Server');
         if (serverDebug === 'debug' || serverDebug === 'info') {
@@ -48,6 +49,7 @@ class ValaLanguageClient implements Disposable {
         if (serverDebug === 'debug' || serverDebug === 'info') {
             serverOptions.options.env['G_MESSAGES_DEBUG'] = 'all';
         }
+        serverOptions.options.env['VLS_METHOD_COMPLETION_MODE'] = methodCompletionMode;
         
         // Enables the output the debug logs from the JSON-RPC library (for reference, redundant with the message output from the extension).
         // if (serverDebug === 'debug') {

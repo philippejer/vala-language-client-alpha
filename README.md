@@ -22,7 +22,7 @@ The following features work reasonably well:
 
 A common issue is that the language server requires Meson 0.50+ in the `PATH` **and** that the build directory needs to exist (the server uses the intropection feature of Meson to determine the source files and compiler switches).
 
-2019-10-20: A fallback is now available by adding a `vala-language-server.json` configuration file under the project root directory. This file will be detected and used to configure the list of sources files and the compiler parameters. An example configuration is available [here](https://github.com/philippejer/vala-language-server-alpha/raw/master/vala-language-server-test.json).
+2019-10-20: A fallback is now available by adding a `vala-language-server.json` configuration file under the project root directory. This file will be detected and used to configure the list of sources files and/or directories and the compiler parameters (it is possible to simply copy the Vala compiler command line from e.g. `compile_commands.json`). An example configuration can be found [here](https://github.com/philippejer/vala-language-server-alpha/blob/master/vala-language-server-test.json).
 
 ### Tiny completion snippets
 
@@ -54,6 +54,7 @@ Typical configuration:
 ```json
 "vls.debug.server": "warn",
 "vls.trace.server": "off",
+"vls.methodCompletionMode": "nospace",
 "editor.wordBasedSuggestions": false,
 "editor.quickSuggestionsDelay": 500,
 "editor.suggestOnTriggerCharacters": true,

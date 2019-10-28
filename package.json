@@ -2,7 +2,7 @@
   "name": "vala-language-client",
   "displayName": "Vala Language Client",
   "description": "Vala Language Client for Visual Studio Code",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publisher": "philippejer",
   "author": {
     "name": "Jeremy Philippe",
@@ -86,6 +86,17 @@
             ],
             "default": "off",
             "description": "Traces the communication between VS Code and the language server.",
+            "scope": "window"
+          },
+          "vls.methodCompletionMode": {
+            "type": "string",
+            "enum": [
+              "off",
+              "space",
+              "nospace"
+            ],
+            "default": "off",
+            "description": "Whether to add parentheses in method completion (with or without a space).",
             "scope": "window"
           }
         }

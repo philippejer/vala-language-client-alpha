@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.8
+- Add setting to control auto-insert of parentheses in method completion.
+
+## 1.0.7
+- Add CSS hack for tiny completion popups.
+
 ## 1.0.7
 - Add CSS hack for tiny completion popups.
 

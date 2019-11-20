@@ -8,12 +8,12 @@ Note that the syntax highlighting in the example below is provided by this exten
 
 ![Demo](https://github.com/philippejer/vala-language-client-alpha/raw/master/images/demo.gif?raw=true)
 
-The following features work reasonably well:
+The following features work decently well:
 
 * Go to definition (code navigation)
 * Mouse hover (symbol declaration)
 * Document symbols (outline)
-* Find references / symbol rename (rename support is limited, use with care)
+* Find references / references code lens / symbol rename (rename support is limited, use with care)
 * Code completion (crude and hack-ish but still fairly fast and usable in common situations)
 
 ## Troubleshooting
@@ -31,8 +31,8 @@ For some reason, a still unresolved issue in VSCode is the tiny completion snipp
 A "dirty" but functional solution is to use [this extension](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css) to load a custom CSS, with the following configuration:
 
 ```json  
-  "vscode_custom_css.imports": ["https://raw.githubusercontent.com/philippejer/vala-language-client-alpha/master/wider-snippets.css"],
-  "vscode_custom_css.policy": true,
+"vscode_custom_css.imports": ["https://raw.githubusercontent.com/philippejer/vala-language-client-alpha/master/wider-snippets.css"],
+"vscode_custom_css.policy": true,
 ```
 
 Do not forget to restart VSCode as admin and run the "Reload Custom CSS and JS" command.
@@ -41,22 +41,28 @@ Do not forget to restart VSCode as admin and run the "Reload Custom CSS and JS" 
 
 There are a few useful configuration settings:
 
-* `vls.path.server` -> path to the `vala-language-server` executable (not required if in the `PATH`)
-* `vls.trace.server ("off"|"messages"|"verbose")` -> debug traces for the client/server communication
-* `vls.debug.server ("off"|"warn"|"info"|"debug")` -> debug level for the server itself
-* `editor.wordBasedSuggestions (true|false)` -> set to false to avoid having text-based completion when the server cannot provide completion (confusing)
-* `editor.quickSuggestionsDelay (milliseconds)` -> can be set to some high value to effectively disable the automatic completion popup for global symbols (completion can then be invoked on demand via the CTRL+SPACE shortcut, can be useful if completion popups are annoying)
-* `editor.suggestOnTriggerCharacters (true|false)` -> set to false to disable the automatic completion popup when the 'dot' character is typed (completion can then be invoked on demand via the CTRL+SPACE shortcut, can be useful if completion popups are annoying)
-* `editor.hover.delay (milliseconds)` -> the default value of 300 milliseconds can be a little too low
+* `vls.trace.server ("off"|"messages"|"verbose")` -> Traces the communication between VS Code and the language server
+* `vls.serverPath` (string) -> Name or full path to the language server executable (not required if in the `PATH`)
+* `vls.logLevel ("off"|"warn"|"info"|"debug"|"silly")` -> Log level for the language server itself
+* `vls.methodCompletionMode` ("off"|"space"|"nospace") -> Enables insertion of parentheses in method completion (with or without a space)
+* `vls.referencesCodeLensEnabled` (true|false) -> Enables/disables references code lens
 
-Typical configuration:
+Other non-specific but related settings:
+
+* `editor.wordBasedSuggestions (true|false)` -> set to false to avoid having text-based completion when the server cannot provide completion (confusing)
+* `editor.quickSuggestionsDelay (milliseconds)` -> can be set to some high value to effectively disable the automatic completion popup for global symbols (completion can then be invoked on demand via the CTRL+SPACE shortcut)
+* `editor.suggestOnTriggerCharacters (true|false)` -> Can be set to false to disable the automatic completion popup when the '.' character is typed (completion can then be invoked on demand via the CTRL+SPACE shortcut)
+* `editor.hover.delay (milliseconds)` -> The default value of 300 milliseconds can be a little too low
+
+As an example, personal configuration:
 
 ```json
-"vls.debug.server": "warn",
 "vls.trace.server": "off",
+"vls.logLevel": "warn",
 "vls.methodCompletionMode": "nospace",
+"vls.referencesCodeLensEnabled": true,
 "editor.wordBasedSuggestions": false,
-"editor.quickSuggestionsDelay": 500,
+"editor.quickSuggestionsDelay": 60000,
 "editor.suggestOnTriggerCharacters": true,
 "editor.hover.delay": 500
 ```

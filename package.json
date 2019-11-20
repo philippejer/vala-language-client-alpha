@@ -2,7 +2,7 @@
   "name": "vala-language-client",
   "displayName": "Vala Language Client",
   "description": "Vala Language Client for Visual Studio Code",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "publisher": "philippejer",
   "author": {
     "name": "Jeremy Philippe",
@@ -59,24 +59,6 @@
       {
         "title": "Vala Language Server",
         "properties": {
-          "vls.path.server": {
-            "type": "string",
-            "default": "vala-language-server",
-            "description": "Name or full path to the language server executable.",
-            "scope": "window"
-          },
-          "vls.debug.server": {
-            "type": "string",
-            "enum": [
-              "off",
-              "warn",
-              "info",
-              "debug"
-            ],
-            "default": "warn",
-            "description": "Debug level for the language server.",
-            "scope": "window"
-          },
           "vls.trace.server": {
             "type": "string",
             "enum": [
@@ -88,6 +70,25 @@
             "description": "Traces the communication between VS Code and the language server.",
             "scope": "window"
           },
+          "vls.serverPath": {
+            "type": "string",
+            "default": "vala-language-server",
+            "description": "Name or full path to the language server executable.",
+            "scope": "window"
+          },
+          "vls.logLevel": {
+            "type": "string",
+            "enum": [
+              "off",
+              "warn",
+              "info",
+              "debug",
+              "silly"
+            ],
+            "default": "warn",
+            "description": "Log level for the language server itself.",
+            "scope": "window"
+          },
           "vls.methodCompletionMode": {
             "type": "string",
             "enum": [
@@ -96,7 +97,13 @@
               "nospace"
             ],
             "default": "off",
-            "description": "Whether to add parentheses in method completion (with or without a space).",
+            "description": "Enables insertion of parentheses in method completion (with or without a space).",
+            "scope": "window"
+          },
+          "vls.referencesCodeLensEnabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enables/disables references code lens.",
             "scope": "window"
           }
         }

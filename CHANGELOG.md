@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+- Add support for references code lens.
+- Add support for dynamic settings.
+
 ## 1.0.8
 - Add setting to control auto-insert of parentheses in method completion.
 

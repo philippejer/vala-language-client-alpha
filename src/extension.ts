@@ -111,10 +111,12 @@ class ValaLanguageClient implements Disposable {
         let logLevel: 'debug' | 'info' | 'warn' | 'off' = config['debug'] && config['debug']['server'] || config['logLevel'];
         let methodCompletionMode: string = config['methodCompletionMode'];
         let referencesCodeLensEnabled: boolean = config['referencesCodeLensEnabled'];
+        let minimalCodeCheckEnabled: boolean = config['minimalCodeCheckEnabled'];
         return {
             logLevel,
             methodCompletionMode,
-            referencesCodeLensEnabled
+            referencesCodeLensEnabled,
+            minimalCodeCheckEnabled
         };
     }
 }

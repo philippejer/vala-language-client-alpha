@@ -105,6 +105,12 @@
             "default": false,
             "description": "Enables/disables references code lens.",
             "scope": "window"
+          },
+          "vls.minimalCodeCheckEnabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Requires experimental compiler branch: Enables/disables minimal code checking (disables flow analysis for things like unused variables etc.).",
+            "scope": "window"
           }
         }
       }

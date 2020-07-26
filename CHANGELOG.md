@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.1
+- Mark extension as deprecated in favor of the now stable extension `vala-vscode`.
+
 ## 1.1.0
 - Add support for references code lens.
 - Add support for dynamic settings.

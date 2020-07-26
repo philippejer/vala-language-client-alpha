@@ -2,22 +2,24 @@ import { commands, Disposable, ExtensionContext, OutputChannel, Selection, windo
 import { Executable, LanguageClient, LanguageClientOptions, RevealOutputChannelOn, ServerOptions, TransportKind } from 'vscode-languageclient';
 
 export function activate(context: ExtensionContext) {
-    // Custom command to move the cursor for CodeLens references since the protocol does not allow it (AFAIK)
+    // This is an ad-hoc command to move the cursor at the position specified by the language server for code lens references
+    // This is required because the protocol does not allow to do this in a "portable" way (AFAIK)
     context.subscriptions.push(commands.registerCommand('vls.show.references', (lineStr: string, characterStr: string) => {
+        // Parse the cursor position
         const line = parseInt(lineStr, 10);
         const character = parseInt(characterStr, 10);
         if (isNaN(line) || isNaN(character)) {
             return;
         }
 
-        // Change cursor position
+        // Change the cursor position
         const editor = window.activeTextEditor;
         const position = editor.selection.active;
         var newPosition = position.with(line, character);
         var newSelection = new Selection(newPosition, newPosition);
         editor.selection = newSelection;
 
-        // Trigger find all references command
+        // Trigger the "find all references" command
         commands.executeCommand('editor.action.referenceSearch.trigger');
     }));
 

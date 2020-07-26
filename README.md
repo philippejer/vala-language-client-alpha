@@ -1,5 +1,9 @@
 # Visual Studio Code extension for a Vala Language Server
 
+**Note**: This extension (as well as the associated language server) is deprecated in favor of the [vala-vscode](https://marketplace.visualstudio.com/items?itemName=prince781.vala) extension which is much more actively developed. It will be unpublished on september 1, 2020.
+
+---
+
 Client extension for this Language Server for the [Vala](https://wiki.gnome.org/Projects/Vala) language: https://github.com/philippejer/vala-language-server-alpha
 
 Note that the syntax highlighting in the example below is provided by this extension: https://marketplace.visualstudio.com/items?itemName=philippejer.vala-grammar
@@ -16,6 +20,16 @@ The following features work decently well:
 * Find references / references code lens / symbol rename (rename support is limited, use with care)
 * Code completion (crude and hack-ish but still fairly fast and usable in common situations)
 
+## Building the extension and installing manually
+
+Usually these steps do the trick:
+
+* Requires VSCode Extension Manager: `npm i -g vsce`
+* `npm i`
+* `vsce package`
+
+This will produce a `vala-language-client-x.x.x.vsix` which can then be installed manually with
+
 ## Troubleshooting
 
 ### Build file
@@ -30,29 +44,32 @@ For some reason, a still unresolved issue in VSCode is the tiny completion snipp
 
 A "dirty" but functional solution is to use [this extension](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css) to load a custom CSS, with the following configuration:
 
-```json  
+```json
 "vscode_custom_css.imports": ["https://raw.githubusercontent.com/philippejer/vala-language-client-alpha/master/wider-snippets.css"],
 "vscode_custom_css.policy": true,
 ```
 
 Do not forget to restart VSCode as admin and run the "Reload Custom CSS and JS" command.
 
+Of course, it is possible to download the file locally to tweak the size of the popup and then use a file URI like so: `file:///D:/path/to/wider-snippets.css`.
+
 ## Configuration
 
 There are a few useful configuration settings:
 
-* `vls.trace.server ("off"|"messages"|"verbose")` -> Traces the communication between VS Code and the language server
-* `vls.serverPath` (string) -> Name or full path to the language server executable (not required if in the `PATH`)
-* `vls.logLevel ("off"|"warn"|"info"|"debug"|"silly")` -> Log level for the language server itself
-* `vls.methodCompletionMode` ("off"|"space"|"nospace") -> Enables insertion of parentheses in method completion (with or without a space)
-* `vls.referencesCodeLensEnabled` (true|false) -> Enables/disables references code lens
+* `vls.trace.server ("off"|"messages"|"verbose")` -> Traces the communication between VS Code and the language server.
+* `vls.serverPath` (string) -> Name or full path to the language server executable (not required if in the `PATH`).
+* `vls.logLevel ("off"|"warn"|"info"|"debug"|"silly")` -> Log level for the language server itself.
+* `vls.methodCompletionMode` ("off"|"space"|"nospace") -> Enables insertion of parentheses in method completion (with or without a space).
+* `vls.referencesCodeLensEnabled` (true|false) -> Enables/disables references code lens.
+* `vls.minimalCodeCheckEnabled` (true|false) -> Requires the experimental compiler branch: Enables/disables minimal code checking (disables flow analysis for things like unused variables etc.).
 
 Other non-specific but related settings:
 
-* `editor.wordBasedSuggestions (true|false)` -> set to false to avoid having text-based completion when the server cannot provide completion (confusing)
-* `editor.quickSuggestionsDelay (milliseconds)` -> can be set to some high value to effectively disable the automatic completion popup for global symbols (completion can then be invoked on demand via the CTRL+SPACE shortcut)
-* `editor.suggestOnTriggerCharacters (true|false)` -> Can be set to false to disable the automatic completion popup when the '.' character is typed (completion can then be invoked on demand via the CTRL+SPACE shortcut)
-* `editor.hover.delay (milliseconds)` -> The default value of 300 milliseconds can be a little too low
+* `editor.wordBasedSuggestions (true|false)` -> set to false to avoid having text-based completion when the server cannot provide completion (confusing).
+* `editor.quickSuggestionsDelay (milliseconds)` -> can be set to some high value to effectively disable the automatic completion popup for global symbols (completion can then be invoked on demand via the CTRL+SPACE shortcut).
+* `editor.suggestOnTriggerCharacters (true|false)` -> Can be set to false to disable the automatic completion popup when the '.' character is typed (completion can then be invoked on demand via the CTRL+SPACE shortcut).
+* `editor.hover.delay (milliseconds)` -> The default value of 300 milliseconds can be a little too low.
 
 As an example, personal configuration:
 

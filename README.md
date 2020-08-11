@@ -6,7 +6,7 @@
 
 Client extension for this Language Server for the [Vala](https://wiki.gnome.org/Projects/Vala) language: https://github.com/philippejer/vala-language-server-alpha
 
-Note that the syntax highlighting in the example below is provided by this extension: https://marketplace.visualstudio.com/items?itemName=philippejer.vala-grammar
+Note: The very basic (intentionally) syntax highlighting part is from https://github.com/philippejer/vala-grammar, you can find more details about the limitations there (also deprecated in favor of [vala-vscode](https://marketplace.visualstudio.com/items?itemName=prince781.vala)).
 
 ## Supported language server features
 

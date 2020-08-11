@@ -2,7 +2,7 @@
   "name": "vala-language-client",
   "displayName": "Vala Language Client (deprecated)",
   "description": "Vala Language Client for Visual Studio Code",
-  "version": "1.1.1",
+  "version": "1.1.2-deprecated",
   "publisher": "philippejer",
   "author": {
     "name": "Jeremy Philippe",
@@ -35,7 +35,8 @@
         "extensions": [
           ".vala",
           ".vapi"
-        ]
+        ],
+        "configuration": "./language-configuration-vala.json"
       },
       {
         "id": "genie",
@@ -45,7 +46,20 @@
         ],
         "extensions": [
           ".gs"
-        ]
+        ],
+        "configuration": "./language-configuration-genie.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "vala",
+        "scopeName": "source.vala",
+        "path": "./syntaxes/vala.tmLanguage"
+      },
+      {
+        "language": "genie",
+        "scopeName": "source.genie",
+        "path": "./syntaxes/genie.tmLanguage"
       }
     ],
     "commands": [

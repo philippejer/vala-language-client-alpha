@@ -1,0 +1,103 @@
+name: Genie
+scopeName: source.genie
+fileTypes:
+  - gs
+uuid: b1e902c2-7248-400a-a6e6-666f250eadb1
+
+patterns:
+    - include: '#code'
+
+repository:
+  code:
+    patterns:
+    - include: '#comments'
+    - include: '#constants'
+    - include: '#strings'
+    - include: '#keywords'
+    - include: '#types'
+    - include: '#functions'
+    - include: '#variables'
+
+  comments:
+    patterns:
+    - name: comment.block.empty.vala
+      match: '/\*\*/'
+      captures:
+        '0': { name: punctuation.definition.comment.vala }
+    - include: text.html.javadoc
+    - include: '#comments-inline'
+
+  comments-inline:
+    patterns:
+    - name: comment.block.vala
+      begin: '/\*'
+      captures:
+        '0': { name: punctuation.definition.comment.vala }
+      end: '\*/'
+    - match: '\s*((//).*$\n?)'
+      captures:
+        '1': { name: comment.line.double-slash.vala }
+        '2': { name: punctuation.definition.comment.vala }
+
+  constants:
+    patterns:
+    - name: constant.numeric.vala
+      match: '\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)([LlFfUuDd]|UL|ul)?\b'
+    - name: variable.other.constant.vala
+      match: '\b([A-Z][A-Z0-9_]+)\b'
+
+  strings:
+    patterns:
+    - name: string.quoted.triple.vala
+      begin: '"""'
+      end: '"""'
+    - name: string.quoted.interpolated.vala
+      begin: '@"'
+      end: '"'
+      patterns:
+      - name: constant.character.escape.vala
+        match: '\\.'
+      - name: constant.character.escape.vala
+        match: '\$\w+'
+      - name: constant.character.escape.vala
+        match: '\$\(([^)(]|\(([^)(]|\([^)]*\))*\))*\)'
+    - name: string.quoted.double.vala
+      begin: '"'
+      end: '"'
+      patterns:
+      - name: constant.character.escape.vala
+        match: '\\.'
+    - name: string.quoted.single.vala
+      begin: ''''
+      end: ''''
+      patterns:
+      - name: constant.character.escape.vala
+        match: '\\.'
+    - name: string.regexp.vala
+      match: '/((\\/)|([^/]))*/(?=\s*[,;)\.\n])'
+
+  keywords:
+    patterns:
+      - name: keyword.vala
+        match: '(?<=^|[^@\w\.])(as|do|if|in|is|of|or|to|and|def|for|get|isa|new|not|out|ref|set|try|var|case|dict|else|enum|init|list|lock|null|pass|prop|self|true|uses|void|weak|when|array|async|break|class|const|event|false|final|owned|print|super|raise|while|yield|assert|delete|downto|except|extern|inline|params|public|raises|return|sealed|sizeof|static|struct|typeof|default|dynamic|ensures|finally|private|unowned|virtual|abstract|continue|delegate|internal|override|readonly|requires|volatile|construct|errordomain|interface|namespace|protected|implements)\b'
+      - name: keyword.vala
+        match: '(?<=^|[^@\w\.])(bool|double|float|unichar|char|uchar|int|uint|long|ulong|short|ushort|size_t|ssize_t|string|void|signal|int8|int16|int32|int64|uint8|uint16|uint32|uint64)\b'
+      - name: keyword.vala
+        match: '(#if|#else|#endif)'
+
+  types:
+    patterns:
+    - name: storage.type.primitive.vala
+      match: '(?<=^|[^@\w\.])(bool|double|float|unichar|char|uchar|int|uint|long|ulong|short|ushort|size_t|ssize_t|string|void|signal|int8|int16|int32|int64|uint8|uint16|uint32|uint64)\b'
+    - name: entity.name.type.vala
+      match: '\b([A-Z]+\w*)\b'
+
+  functions:
+    patterns:
+    - name: entity.name.function.vala
+      match: '(\w+)(?=\s*(<[\s\w.]+>\s*)?\()'
+
+  variables:
+    patterns:
+    - name: variable.other.vala
+      match: '\b([_a-z]+\w*)\b'
